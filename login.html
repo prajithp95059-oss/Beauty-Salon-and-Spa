@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="preloader.js"></script>
+<title>Login – Stackly Beauty Salon &amp; Spa</title>
+<meta name="description" content="Log in or create your Stackly Beauty Salon & Spa account to book treatments, manage appointments and unlock member-only offers.">
+<meta name="theme-color" content="#3B1F3A">
+<link rel="icon" href="stackly-logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF5EA;--sand:#F1E6D2;--plum:#3B1F3A;--plum2:#2A152A;--rose:#C98A8F;--sage:#8FA48B;--gold:#B88A44;--ink:#2B1B2A;--white:#FFFDF8;--gray:#76697A;--line:rgba(43,27,42,.16);--err:#C62828;--ok:#14803C;--h:'Cormorant Garamond',Georgia,serif;--b:'Jost',system-ui,-apple-system,sans-serif;--r:22px;--ease:cubic-bezier(.22,.8,.22,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--b);color:var(--ink);background:var(--cream);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}input{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--h);font-weight:600;line-height:1.08;text-wrap:balance}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px;border-radius:8px}
+
+.auth-wrap{min-height:100vh;min-height:100svh;display:grid;grid-template-columns:1.05fr .95fr}
+/* LEFT VISUAL */
+.auth-visual{position:relative;overflow:hidden;isolation:isolate;color:#fff;background:linear-gradient(160deg,rgba(42,21,42,.93) 0%,rgba(59,31,58,.86) 55%,rgba(90,45,70,.8) 100%),url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1400&q=70') center/cover no-repeat,var(--plum)}
+.auth-visual::before,.auth-visual::after{content:"";position:absolute;border-radius:50%;z-index:-1;pointer-events:none}
+.auth-visual::before{width:520px;height:520px;right:-180px;top:-160px;background:radial-gradient(circle,rgba(184,138,68,.42),transparent 68%)}
+.auth-visual::after{width:420px;height:420px;left:-140px;bottom:-140px;background:radial-gradient(circle,rgba(201,138,143,.5),transparent 68%)}
+.av-content{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;gap:clamp(20px,3vh,32px);padding:clamp(30px,5vh,52px) clamp(34px,5vw,72px)}
+.logo{display:inline-flex;align-items:center;gap:10px;font-family:var(--h);font-weight:600;font-size:2rem;letter-spacing:.01em}
+.logo img{height:46px;width:auto;background:none}.av-logo img{height:70px}.logo svg{width:36px;height:36px}.logo em{font-style:italic;color:var(--rose)}
+.av-logo{align-self:flex-start;color:var(--white)}
+.av-hero{max-width:62ch;margin:auto 0}
+.hero-pill{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);padding:7px 20px 7px 7px;border-radius:999px;font-size:clamp(.88rem,min(1.15vw,1.9vh),1.05rem);font-weight:400;color:var(--cream);margin-bottom:clamp(16px,3vh,34px)}
+.hero-pill b{background:var(--sand);color:var(--gold);padding:4px 14px;border-radius:999px;font-weight:500}
+.av-hero h1{font-size:clamp(2.8rem,min(6vw,10vh),5.6rem);color:#fff;line-height:1.05;margin-bottom:clamp(16px,3vh,32px)}
+.av-hero h1 .line{display:block;overflow:hidden;padding:.1em .3em .14em 0;white-space:nowrap}
+.av-hero h1 .line>span{display:inline-block;transform:translateY(110%)}
+.av-hero h1 .line.accent i{display:inline-block;font-style:italic;color:var(--rose)}
+.av-hero p{color:#fff;font-weight:300;font-size:clamp(1.02rem,min(1.5vw,2.6vh),1.3rem);line-height:1.65;margin-bottom:clamp(20px,3.4vh,40px);max-width:52ch;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.av-stats{display:flex;gap:clamp(18px,2.6vw,44px);flex-wrap:wrap;padding-top:clamp(22px,3.5vh,32px);border-top:1px solid rgba(255,255,255,.2)}
+.av-stats h3{font-size:clamp(2.2rem,min(3.6vw,6vh),3.5rem);color:var(--rose);margin-bottom:2px}
+.av-stats span{font-size:clamp(.9rem,1.2vw,1rem);color:#efe3d3;font-weight:400}
+.av-card{display:flex;align-items:center;gap:14px;align-self:flex-start;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);border-radius:18px;padding:16px 22px;font-size:clamp(.9rem,1.2vw,1rem);line-height:1.4;color:var(--cream)}
+.av-card i{width:50px;height:50px;border-radius:50%;background:var(--rose);display:grid;place-items:center;flex:none}
+.av-card svg{width:25px;height:25px;stroke:var(--plum);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.av-card strong{display:block;color:#fff;font-size:1.08em;font-weight:500}
+@media (max-height:880px){.av-card{display:none}}
+
+/* RIGHT PANEL */
+.auth-panel{display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:100vh;min-height:100svh;padding:clamp(28px,4vw,56px) clamp(24px,5vw,80px);background:var(--cream)}
+.auth-box{width:100%;max-width:440px}
+.mode-switch{position:relative;display:grid;grid-template-columns:1fr 1fr;background:var(--white);border-radius:999px;padding:5px;margin-bottom:30px;border:1.5px solid var(--plum)}
+.mode-switch .slider{position:absolute;top:5px;left:5px;width:calc(50% - 5px);height:calc(100% - 10px);background:var(--plum);border-radius:999px;transition:transform .4s var(--ease)}
+.mode-switch[data-mode="signup"] .slider{transform:translateX(100%)}
+.mode-switch button{position:relative;z-index:2;padding:11px 0;font-weight:500;font-size:.95rem;color:var(--plum);border-radius:999px;transition:color .3s}
+.mode-switch button.active{color:var(--cream)}
+.auth-view{display:none}.auth-view.active{display:block;animation:viewIn .5s var(--ease)}
+@keyframes viewIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.auth-eyebrow{display:flex;align-items:center;gap:10px;font:500 .78rem var(--b);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.auth-eyebrow::before{content:"";width:32px;height:2px;background:currentColor;border-radius:3px}
+.auth-box h2{font-size:clamp(2.3rem,4.4vw,3.2rem);color:var(--plum);margin-bottom:22px}
+.auth-box h2::after{content:"";display:block;width:70px;height:3px;margin-top:14px;border-radius:3px;background:linear-gradient(90deg,var(--rose),var(--gold))}
+.role-picker{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.role-opt{position:relative;display:flex}
+.role-opt input{position:absolute;opacity:0;pointer-events:none}
+.role-opt .card{flex:1;width:100%;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:14px 10px;border:1.5px solid var(--line);border-radius:var(--r);background:var(--white);font-weight:500;font-size:.92rem;color:var(--gray);text-align:center;transition:border-color .25s,background .25s,color .25s,transform .25s;cursor:pointer}
+.role-opt .card svg{width:26px;height:26px;stroke:var(--gray);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s}
+.role-opt .card:hover{border-color:var(--plum);transform:translateY(-2px)}
+.role-opt input:checked+.card{border-color:var(--plum);background:#fff;color:var(--plum);box-shadow:inset 0 -4px 0 var(--rose)}
+.role-opt input:checked+.card svg{stroke:var(--plum)}
+.role-opt input:focus-visible+.card{outline:3px solid var(--rose);outline-offset:2px}
+.role-caption{font-size:.92rem;color:var(--gray);margin-bottom:20px}.role-caption b{color:var(--plum);font-weight:500}
+.top-alert{display:none;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:16px;margin-bottom:16px;font-size:.92rem;font-weight:400;background:rgba(198,40,40,.07);color:var(--err);border:1px solid rgba(198,40,40,.3)}
+.top-alert.show{display:flex}
+.top-alert svg{width:18px;height:18px;flex:none;margin-top:4px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.top-alert.ok{background:rgba(20,128,60,.08);color:var(--ok);border-color:rgba(20,128,60,.32)}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-weight:500;font-size:.87rem;color:var(--ink);margin-bottom:6px}
+.form-group input[type=text],.form-group input[type=email],.form-group input[type=tel],.form-group input[type=password]{width:100%;min-height:52px;padding:12px 20px;border:1.5px solid var(--line);border-radius:50px;background:#fff;font-size:1rem;font-weight:400;transition:border-color .25s,box-shadow .25s}
+.form-group input::placeholder{color:#ac9fa9}
+.form-group input:focus{outline:none;border-color:var(--plum);box-shadow:0 0 0 4px rgba(201,138,143,.35)}
+.form-group.invalid input{border-color:var(--err)}
+.error-msg{display:none;margin:5px 0 0 12px;font-size:.85rem;font-weight:400;color:var(--err)}
+.form-group.invalid .error-msg{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pw-wrap{position:relative}.pw-wrap input{padding-right:56px!important}
+.pw-toggle{position:absolute;right:7px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .25s}
+.pw-toggle:hover{background:var(--sand)}
+.pw-toggle svg{width:20px;height:20px;stroke:#9a8c97;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pw-toggle.on svg{stroke:var(--plum)}
+.pw-strength{height:6px;border-radius:3px;background:rgba(43,27,42,.1);margin-top:8px;overflow:hidden}
+.pw-strength-bar{height:100%;width:0;border-radius:3px;transition:width .3s,background .3s}
+.pw-label{font-size:.82rem;font-weight:500;margin:6px 0 0 4px;color:var(--gray);min-height:1.3em}
+.pw-rules{list-style:none;display:none;grid-template-columns:1fr 1fr;gap:4px 12px;margin:8px 0 0 4px}
+.pw-rules.show{display:grid}
+.pw-rules li{font-size:.82rem;font-weight:400;color:var(--gray);display:flex;align-items:center;gap:7px}
+.pw-rules li::before{content:"\2715";display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:rgba(198,40,40,.1);color:var(--err);font-size:.62rem;font-weight:700;flex:none}
+.pw-rules li.ok{display:none}
+.form-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:2px 0 18px;flex-wrap:wrap}
+.remember{display:inline-flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;cursor:pointer;user-select:none}
+.remember input{width:18px;height:18px;accent-color:var(--plum);cursor:pointer}
+.remember-wrap{display:flex;flex-direction:column;gap:4px}
+.remember-err{display:none;font-size:.85rem;font-weight:400;color:var(--err)}
+.remember-wrap.invalid .remember-err{display:block}
+.remember-wrap.invalid .remember input{outline:2px solid var(--err);outline-offset:2px}
+.forgot-link{font-weight:500;font-size:.88rem;color:var(--plum);transition:color .25s}.forgot-link:hover{color:var(--rose)}
+.btn-block{position:relative;overflow:hidden;isolation:isolate;width:100%;min-height:54px;padding:14px;border-radius:999px;background:var(--plum);color:var(--cream);border:1.5px solid var(--plum);font-weight:500;font-size:1rem;margin-top:6px;transition:transform .3s var(--ease),color .3s .1s,border-color .3s}
+.btn-block::before{content:"";position:absolute;inset:0;background:var(--rose);transform:translateY(101%);transition:transform .45s var(--ease);z-index:-1}
+.btn-block::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:.7s;z-index:-1}
+.btn-block:hover{transform:translateY(-3px);border-color:var(--rose)}.btn-block:hover::before{transform:none}.btn-block:hover::after{left:130%}
+.btn-block:active{transform:translateY(1px)}
+.btn-block:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.switch-note{margin-top:20px;text-align:center;font-size:.95rem;font-weight:400;color:var(--gray)}
+.switch-note a{font-weight:500;color:var(--plum);transition:color .25s}.switch-note a:hover{color:var(--rose)}
+.back-wrap{width:100%;max-width:440px;display:flex;justify-content:center}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:.88rem;color:var(--gray);margin-top:30px;transition:color .25s}
+.back-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.back-link:hover{color:var(--rose)}
+.m-logo{display:none;width:100%;max-width:440px;margin-bottom:24px;justify-content:center;color:var(--plum)}
+.m-logo a{display:inline-flex}.m-logo img{height:64px;width:auto}
+@media (max-width:980px){.auth-wrap{grid-template-columns:1fr}.auth-visual{display:none}.auth-panel{justify-content:flex-start;padding:calc(30px + env(safe-area-inset-top,0px)) 24px 40px}.m-logo{display:flex}}
+@media (max-width:520px){.form-row{grid-template-columns:1fr}.pw-rules{grid-template-columns:1fr}.auth-panel{padding:calc(24px + env(safe-area-inset-top,0px)) 20px 36px}}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important}.auth-view.active{animation:none}.mode-switch .slider,.btn-block::before,.btn-block::after{transition:none}}
+</style>
+</head>
+<body data-page="login">
+
+<div class="auth-wrap">
+  <aside class="auth-visual">
+    <div class="av-content">
+      <a href="index.html" class="logo av-logo" id="logoA" aria-label="Stackly Beauty Salon &amp; Spa home"></a>
+      <div class="av-hero">
+        <div class="hero-pill"><b>Welcome back</b> Your calm is waiting</div>
+        <h1 id="heroTitle" aria-label="Ready to unwind? Let's get you glowing."><span class="line"><span>Ready to unwind?</span></span><span class="line accent"><span><i>Let's get you glowing.</i></span></span></h1>
+        <p>Book treatments in a few taps, manage your appointments and unlock member-only offers. Your next ritual is a login away.</p>
+        <div class="av-stats">
+          <div><h3>12+</h3><span>Years of care</span></div>
+          <div><h3>25,000+</h3><span>Guests served</span></div>
+          <div><h3>4.9</h3><span>Average rating</span></div>
+        </div>
+      </div>
+      <div class="av-card"><i><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i><div><strong>Secure and private</strong>Your details and appointment history stay yours alone</div></div>
+    </div>
+  </aside>
+  <main class="auth-panel">
+    <div class="m-logo"><a href="index.html" class="logo" id="logoB" aria-label="Stackly Beauty Salon &amp; Spa home"></a></div>
+    <div class="auth-box" id="authBox">
+      <div class="mode-switch" id="modeSwitch" data-mode="signin"><div class="slider"></div><button type="button" class="active" data-mode="signin">Log In</button><button type="button" data-mode="signup">Sign Up</button></div>
+
+      <section class="auth-view active" id="viewSignin">
+        <div class="auth-eyebrow">Welcome back</div>
+        <h2>Log in to your account</h2>
+        <div class="role-picker"><label class="role-opt"><input type="radio" name="login-role" value="user" checked><div class="card"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"/></svg>Client</div></label><label class="role-opt"><input type="radio" name="login-role" value="admin"><div class="card"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"/><path d="M9 12h6M12 9v6"/></svg>Admin</div></label></div>
+        <div class="role-caption" id="loginRoleCaption">Signing in as a <b>client</b></div>
+        <div class="top-alert" id="loginAlert" role="alert"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg><span id="loginAlertText">Please fill in a valid email and password.</span></div>
+        <form id="formLogin" novalidate>
+          <div class="form-group" id="fg-lemail"><label for="loginEmail">Email address</label><input type="email" id="loginEmail" placeholder="you@email.com" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="60"><span class="error-msg">Enter a valid email address.</span></div>
+          <div class="form-group" id="fg-lpass"><label for="loginPassword">Password</label><div class="pw-wrap"><input type="password" id="loginPassword" placeholder="At least 8 characters" autocomplete="current-password" maxlength="32"><button type="button" class="pw-toggle" data-target="loginPassword" aria-label="Show password"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div><span class="error-msg">Password must be at least 8 characters.</span></div>
+          <div class="form-meta">
+            <div class="remember-wrap" id="fg-remember"><label class="remember" for="rememberMe"><input type="checkbox" id="rememberMe" name="remember"> Remember me</label><span class="remember-err" id="rememberErr">Please tick "Remember me" to continue.</span></div>
+            <button type="button" class="forgot-link" onclick="error()">Forgot password?</button>
+          </div>
+          <button type="submit" class="btn-block" id="loginSubmit">Log in as <span id="loginRoleLabel">Client</span> →</button>
+        </form>
+        <div class="switch-note">New here? <a href="#signup" id="toSignup">Create an account</a></div>
+      </section>
+
+      <section class="auth-view" id="viewSignup">
+        <div class="auth-eyebrow">Join Stackly Spa</div>
+        <h2>Create your account</h2>
+        <div class="top-alert ok" id="signupAlert" role="status"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg><span>Account created. Please log in.</span></div>
+        <form id="formSignup" novalidate>
+          <div class="form-row">
+            <div class="form-group" id="fg-sfname"><label for="signupFirstName">First name</label><input type="text" id="signupFirstName" placeholder="First name" maxlength="30" autocomplete="given-name" spellcheck="false"><span class="error-msg">Please enter your first name.</span></div>
+            <div class="form-group" id="fg-slname"><label for="signupLastName">Last name</label><input type="text" id="signupLastName" placeholder="Last name" maxlength="30" autocomplete="family-name" spellcheck="false"><span class="error-msg">Please enter your last name.</span></div>
+          </div>
+          <div class="role-picker"><label class="role-opt"><input type="radio" name="signup-role" value="user" checked><div class="card"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"/></svg>Client</div></label><label class="role-opt"><input type="radio" name="signup-role" value="admin"><div class="card"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"/><path d="M9 12h6M12 9v6"/></svg>Admin</div></label></div>
+          <div class="role-caption" id="signupRoleCaption">Creating an account as a <b>client</b></div>
+          <div class="form-group" id="fg-semail"><label for="signupEmail">Email address</label><input type="email" id="signupEmail" placeholder="you@email.com" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="60"><span class="error-msg" id="semailErr">Enter a valid email address.</span></div>
+          <div class="form-group" id="fg-sphone"><label for="signupPhone">Mobile number</label><input type="tel" id="signupPhone" placeholder="10-digit mobile number" inputmode="numeric" maxlength="10" autocomplete="tel-national"><span class="error-msg">Enter a valid 10-digit mobile number starting with 6 to 9.</span></div>
+          <div class="form-group" id="fg-spass"><label for="signupPassword">Create password</label><div class="pw-wrap"><input type="password" id="signupPassword" placeholder="Create a strong password" autocomplete="new-password" maxlength="32" aria-describedby="pwRules"><button type="button" class="pw-toggle" data-target="signupPassword" aria-label="Show password"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div><div class="pw-strength"><div class="pw-strength-bar" id="pwStrengthBar"></div></div><div class="pw-label" id="pwLabel" aria-live="polite"></div>
+            <ul class="pw-rules" id="pwRules">
+              <li data-rule="len">At least 8 characters</li>
+              <li data-rule="up">One uppercase letter (A-Z)</li>
+              <li data-rule="low">One lowercase letter (a-z)</li>
+              <li data-rule="num">One number (0-9)</li>
+              <li data-rule="sp">One special character (!@#$%)</li>
+            </ul>
+            <span class="error-msg" id="spassErr">Please create a strong password that meets all the requirements above.</span></div>
+          <div class="form-group" id="fg-scpass"><label for="signupConfirm">Confirm password</label><div class="pw-wrap"><input type="password" id="signupConfirm" placeholder="Re-enter password" autocomplete="new-password" maxlength="32"><button type="button" class="pw-toggle" data-target="signupConfirm" aria-label="Show password"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div><span class="error-msg">Passwords do not match.</span></div>
+          <button type="submit" class="btn-block">Create account →</button>
+        </form>
+        <div class="switch-note">Already have an account? <a href="#signin" id="toSignin">Log in</a></div>
+      </section>
+
+      <section class="auth-view" id="viewForgot">
+        <div class="auth-eyebrow">Password help</div>
+        <h2>Reset your password</h2>
+        <div class="top-alert ok" id="forgotAlert" role="status"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg><span id="forgotAlertText">A reset link is on its way.</span></div>
+        <form id="formForgot" novalidate>
+          <div class="form-group" id="fg-femail"><label for="forgotEmail">Email address</label><input type="email" id="forgotEmail" placeholder="you@email.com" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="60"><span class="error-msg">Enter a valid email address.</span></div>
+          <button type="submit" class="btn-block">Send reset link →</button>
+        </form>
+        <div class="switch-note">Remembered it? <a href="#signin" id="forgotBack">Back to log in</a></div>
+      </section>
+    </div>
+    <div class="back-wrap"><a href="index.html" class="back-link"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Back to home</a></div>
+  </main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+
+  /* logo: white logo on the dark left panel; colour logo on the light mobile header, both with wordmark fallback */
+  var mark='<svg viewBox="0 0 34 34"><circle cx="17" cy="17" r="16" fill="#C98A8F"/><path d="M17 8c3 3 4 6 0 12-4-6-3-9 0-12zM9 13c4 0 7 2 8 7-5 0-8-2-8-7zM25 13c-4 0-7 2-8 7 5 0 8-2 8-7z" stroke="#3B1F3A" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Stack<em>ly</em>';
+  (function(){var a=$('logoA'),im=new Image();im.alt='Stackly Beauty Salon & Spa';im.onload=function(){a.innerHTML='';a.appendChild(im);};im.src='stackly-white-logo.webp';a.innerHTML=mark;})();
+  (function(){var a=$('logoB'),im=new Image();im.alt='Stackly Beauty Salon & Spa';im.onload=function(){a.innerHTML='';a.appendChild(im);};im.src='stackly-logo.webp';a.innerHTML=mark;})();
+
+  if(window.gsap){
+    gsap.set('.hero-pill,.av-hero p,.av-stats,.av-card',{opacity:0,y:16});
+    gsap.timeline({defaults:{ease:'power4.out'}})
+      .to('.hero-pill',{opacity:1,y:0,duration:.6},.05).to('.av-hero h1 .line > span',{y:'0%',duration:1,stagger:.12},.1)
+      .to('.av-hero p,.av-stats,.av-card',{opacity:1,y:0,duration:.7,stagger:.12},'-=0.5')
+      .from('.auth-box',{opacity:0,y:22,duration:.7},'-=0.9');
+  }else{document.querySelectorAll('.av-hero h1 .line > span').forEach(function(s){s.style.transform='none';});}
+
+  /* ===== REMEMBER ME (nothing is ever stored; email is never prefilled) ===== */
+  var REMEMBER='stackly_remember';
+  function loadRemembered(){
+    try{localStorage.removeItem(REMEMBER);}catch(e){}
+    $('loginEmail').value='';
+  }
+  function saveRemembered(){
+    try{localStorage.removeItem(REMEMBER);}catch(e){}
+  }
+
+  var modeSwitch=$('modeSwitch'),views={signin:$('viewSignin'),signup:$('viewSignup'),forgot:$('viewForgot')};
+  function switchMode(mode){
+    var tab=mode==='signin'||mode==='signup';
+    modeSwitch.style.display=tab?'':'none';
+    if(tab){modeSwitch.setAttribute('data-mode',mode);modeSwitch.querySelectorAll('button').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-mode')===mode);});}
+    Object.keys(views).forEach(function(k){views[k].classList.toggle('active',k===mode);});
+    document.querySelectorAll('.top-alert').forEach(function(a){a.classList.remove('show');});
+  }
+  modeSwitch.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){switchMode(b.getAttribute('data-mode'));});});
+  $('toSignup').addEventListener('click',function(e){e.preventDefault();switchMode('signup');});
+  $('toSignin').addEventListener('click',function(e){e.preventDefault();switchMode('signin');});
+  /* the "Forgot password?" button uses its own onclick (404 page); wire the in-page reset form only if an element with this id exists */
+  var fl=$('forgotLink');if(fl)fl.addEventListener('click',function(){switchMode('forgot');});
+  $('forgotBack').addEventListener('click',function(e){e.preventDefault();switchMode('signin');});
+  if(location.hash==='#signup')switchMode('signup');
+
+  function wireRole(name,cap,label){
+    document.querySelectorAll('input[name="'+name+'"]').forEach(function(r){
+      r.addEventListener('change',function(){
+        var a=r.value==='admin';
+        $(cap).innerHTML=(name.indexOf('signup')===0?'Creating an account as a ':'Signing in as a ')+'<b>'+(a?'admin':'client')+'</b>';
+        if(label)$(label).textContent=a?'Admin':'Client';
+      });
+    });
+  }
+  wireRole('login-role','loginRoleCaption','loginRoleLabel');wireRole('signup-role','signupRoleCaption',null);
+
+  document.querySelectorAll('.pw-toggle').forEach(function(b){
+    b.addEventListener('click',function(){
+      var i=$(b.getAttribute('data-target')),show=i.type==='password';
+      i.type=show?'text':'password';b.classList.toggle('on',show);b.setAttribute('aria-label',show?'Hide password':'Show password');
+    });
+  });
+
+  /* ===== STRONG PASSWORD RULES (signup) ===== */
+  function pwRules(v){
+    return {len:v.length>=8,up:/[A-Z]/.test(v),low:/[a-z]/.test(v),num:/[0-9]/.test(v),sp:/[^A-Za-z0-9]/.test(v)};
+  }
+  function isStrong(v){var r=pwRules(v);return r.len&&r.up&&r.low&&r.num&&r.sp;}
+  var PW_COLORS=['#B42318','#B42318','#D97706','#D97706','#4D8C1F','#14803C'];
+  var PW_LABELS=['','Very weak','Weak','Fair','Good','Strong'];
+  var pwSubmitted=false;
+  function updatePwUI(){
+    var v=$('signupPassword').value,r=pwRules(v),s=0;
+    $('pwRules').classList.toggle('show',!isStrong(v)&&(v.length>0||pwSubmitted));
+    document.querySelectorAll('#pwRules li').forEach(function(li){
+      var ok=!!r[li.getAttribute('data-rule')];
+      li.classList.toggle('ok',ok);if(ok)s++;
+    });
+    if(!v)s=0;
+    var bar=$('pwStrengthBar');bar.style.width=(s/5*100)+'%';bar.style.background=PW_COLORS[s];
+    var lb=$('pwLabel');lb.textContent=v?PW_LABELS[s]:'';lb.style.color=PW_COLORS[s];
+    if(isStrong(v))setInvalid('fg-spass',false);
+  }
+  $('signupPassword').addEventListener('input',updatePwUI);
+
+  function filter(input,re,max){
+    if(!input)return;
+    input.addEventListener('beforeinput',function(e){
+      if(e.inputType==='insertFromPaste'||e.inputType==='insertFromDrop')return;
+      if(e.data&&e.data.replace(re,'')!==e.data)e.preventDefault();
+    });
+    input.addEventListener('input',function(){
+      var c=input.value.replace(re,'');if(max)c=c.slice(0,max);if(c!==input.value)input.value=c;
+    });
+  }
+  var NL=/[^A-Za-z ]/g,ND=/[^0-9]/g,SP=/\s/g;
+  filter($('signupFirstName'),NL,30);filter($('signupLastName'),NL,30);filter($('signupPhone'),ND,10);
+  ['loginEmail','signupEmail','forgotEmail','loginPassword','signupPassword','signupConfirm'].forEach(function(id){filter($(id),SP);});
+
+  function isEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);}
+  function isPhone(v){return /^[6-9][0-9]{9}$/.test(v);}
+  function isName(v){return /^[A-Za-z][A-Za-z ]{1,29}$/.test(v);}
+  function isLast(v){return /^[A-Za-z][A-Za-z ]{0,29}$/.test(v);}
+  function setInvalid(id,bad){$(id).classList.toggle('invalid',bad);}
+  $('signupFirstName').addEventListener('input',function(){if(isName(this.value.replace(/\s+/g,' ').trim()))setInvalid('fg-sfname',false);});
+  $('signupLastName').addEventListener('input',function(){if(isLast(this.value.replace(/\s+/g,' ').trim()))setInvalid('fg-slname',false);});
+  function syncConfirm(){
+    var pw=$('signupPassword').value,cpw=$('signupConfirm').value;
+    if(cpw&&cpw===pw)setInvalid('fg-scpass',false);
+  }
+  $('signupConfirm').addEventListener('input',syncConfirm);
+  $('signupPassword').addEventListener('input',syncConfirm);
+  function alertMsg(id,tid,text,show){var a=$(id);if(tid&&text)$(tid).textContent=text;a.classList.toggle('show',show);}
+  function cap(w){return w?w.charAt(0).toUpperCase()+w.slice(1).toLowerCase():'';}
+
+  /* ===== LOGIN: valid email + password goes to the dashboard for the selected role ===== */
+  $('formLogin').addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=$('loginEmail').value.trim(),pass=$('loginPassword').value;
+    var eo=isEmail(email),po=pass.length>=8;
+    setInvalid('fg-lemail',!eo);setInvalid('fg-lpass',!po);
+    var ro=$('rememberMe').checked;
+    $('fg-remember').classList.toggle('invalid',!ro);
+    if(!eo||!po){alertMsg('loginAlert','loginAlertText','Please fill in a valid email and password.',true);return;}
+    if(!ro){alertMsg('loginAlert','loginAlertText','Please tick the "Remember me" box to log in.',true);$('rememberMe').focus();return;}
+    alertMsg('loginAlert',null,null,false);
+    var rEl=document.querySelector('input[name="login-role"]:checked');
+    var role=rEl?rEl.value:'user';
+    saveRemembered(email.toLowerCase(),role,$('rememberMe').checked);
+    var btn=$('loginSubmit');btn.disabled=true;btn.textContent='Logging in…';
+    var target=startSession(email,role);
+    setTimeout(function(){window.location.href=target;},700);
+  });
+
+  $('rememberMe').addEventListener('change',function(){if(this.checked){$('fg-remember').classList.remove('invalid');$('loginAlert').classList.remove('show');}});
+  function resetAll(){
+    ['formLogin','formSignup','formForgot'].forEach(function(id){$(id).reset();});
+    document.querySelectorAll('.form-group.invalid,.remember-wrap.invalid').forEach(function(g){g.classList.remove('invalid');});
+    document.querySelectorAll('.top-alert').forEach(function(a){a.classList.remove('show');});
+    document.querySelectorAll('.pw-toggle').forEach(function(b){
+      var i=$(b.getAttribute('data-target'));i.type='password';b.classList.remove('on');b.setAttribute('aria-label','Show password');
+    });
+    pwSubmitted=false;updatePwUI();
+    $('loginRoleCaption').innerHTML='Signing in as a <b>client</b>';
+    $('signupRoleCaption').innerHTML='Creating an account as a <b>client</b>';
+    var btn=$('loginSubmit');btn.disabled=false;
+    btn.innerHTML='Log in as <span id="loginRoleLabel">Client</span> →';
+  }
+  window.addEventListener('pageshow',function(e){
+    var nav=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];
+    if(e.persisted||(nav&&nav.type==='back_forward')){
+      resetAll();switchMode('signin');loadRemembered();
+      setTimeout(function(){resetAll();loadRemembered();},50);
+    }
+  });
+
+  /* ===== SIGN UP: validates input, stores nothing, then returns to login ===== */
+  $('formSignup').addEventListener('submit',function(e){
+    e.preventDefault();
+    var fn=$('signupFirstName').value.replace(/\s+/g,' ').trim(),
+        ln=$('signupLastName').value.replace(/\s+/g,' ').trim(),
+        email=$('signupEmail').value.trim(),
+        phone=$('signupPhone').value.trim(),
+        pw=$('signupPassword').value,
+        cpw=$('signupConfirm').value,
+        ok=true;
+    function chk(id,g){setInvalid(id,!g);if(!g)ok=false;}
+    chk('fg-sfname',isName(fn));
+    chk('fg-slname',isLast(ln));
+    chk('fg-semail',isEmail(email));
+    chk('fg-sphone',isPhone(phone));
+    chk('fg-spass',isStrong(pw));
+    pwSubmitted=true;updatePwUI();
+    chk('fg-scpass',!!cpw&&cpw===pw);
+    if(!ok){
+      var firstBad=document.querySelector('#formSignup .form-group.invalid input');
+      if(firstBad)firstBad.focus();
+      return;
+    }
+    alertMsg('signupAlert',null,null,true);
+    $('formSignup').reset();pwSubmitted=false;updatePwUI();
+    setTimeout(function(){switchMode('signin');$('loginEmail').value=email.toLowerCase();},900);
+  });
+
+  $('formForgot').addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=$('forgotEmail').value.trim(),g=isEmail(email);
+    setInvalid('fg-femail',!g);
+    if(!g){alertMsg('forgotAlert',null,null,false);return;}
+    alertMsg('forgotAlert','forgotAlertText','If an account exists for '+email+', a password reset link is on its way.',true);$('formForgot').reset();
+  });
+
+  /* creates the session info the dashboards read, and returns the page for the role */
+  function startSession(email,role){
+    var local=email.split('@')[0].replace(/[^A-Za-z]+/g,' ').trim().split(' ');
+    var first=cap(local[0])||'Guest',last=cap(local[1]);
+    try{
+      ['stackly_role','stackly_name','stackly_email'].forEach(function(k){localStorage.removeItem(k);sessionStorage.removeItem(k);});
+      sessionStorage.setItem('stackly_session',JSON.stringify({first:first,email:email.toLowerCase()}));
+      sessionStorage.setItem('stackly_role',role);
+      sessionStorage.setItem('stackly_name',(first+' '+last).trim());
+      sessionStorage.setItem('stackly_email',email.toLowerCase());
+    }catch(err){}
+    return role==='admin'?'admin-dashboard.html':'user-dashboard.html';
+  }
+
+  /* logout support: linking to login.html?logout clears "Remember me" */
+  if(/logout/i.test(location.search+location.hash)){try{localStorage.removeItem(REMEMBER);}catch(e){}}
+  loadRemembered();
+})();
+</script>
+<script>
+function error(){
+  window.location.href="./404.html";
+}
+</script>
+
+</body>
+</html>
